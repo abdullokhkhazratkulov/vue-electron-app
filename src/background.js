@@ -40,9 +40,9 @@ async function createWindow() {
   win.once('ready-to-show', () => {
     autoUpdater.checkForUpdatesAndNotify();
 
-    setInterval(() => {
-      autoUpdater.checkForUpdatesAndNotify();
-    }, 1000 * 60 * 30)
+    // setInterval(() => {
+    //   autoUpdater.checkForUpdatesAndNotify();
+    // }, 1000 * 60 * 30)
   });
 }
 
