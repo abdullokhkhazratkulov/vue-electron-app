@@ -1,5 +1,5 @@
 <template>
- <b-card v-if="show">
+ <b-card v-if="show" class="notification">
   <div>
     <p>{{message}}</p>
     <div class="text-center">
@@ -11,7 +11,8 @@
 </template>
 
 <script>
-const {ipcRenderer} = window.require('electron')
+
+const {ipcRenderer} = require('electron')
 
 export default {
   name: "Notification",
@@ -26,7 +27,7 @@ export default {
     ipcRenderer.on('update_available', () => {
       ipcRenderer.removeAllListeners('update_available');
       this.show = true
-      this.message = 'Доступно новое обновление. Загрузка.....';
+      this.message = 'A new update is available. Downloading now...';
     });
 
     // On new version downloaded
@@ -34,7 +35,7 @@ export default {
       ipcRenderer.removeAllListeners('update_downloaded');
       this.isShow = true
       this.isHidden = true
-      this.message = 'Обновление скачано. Установить?';
+      this.message = 'Update Downloaded. It will be installed on restart. Restart now?';
     });
   },
   methods: {
@@ -49,5 +50,14 @@ export default {
 </script>
 
 <style scoped>
-
+.notification {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 200px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
 </style>

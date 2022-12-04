@@ -3,7 +3,8 @@
 </template>
 
 <script>
-import ProductsTable from '../components/Products/ProductsTable/ProductsTable.vue';
+import ProductsTable from '@/components/Products/ProductsTable/ProductsTable.vue';
+
 
 export default {
   components: {

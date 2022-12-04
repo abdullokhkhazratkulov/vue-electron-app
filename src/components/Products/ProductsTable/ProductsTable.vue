@@ -1,5 +1,6 @@
 <template>
     <div>
+      <Notification />
       <b-button @click="openManualAddItemModal">Add Product</b-button>
       <AddProducts ref="manualAddProduct"/>
       <table class="table">
@@ -21,8 +22,9 @@
   </template>
   
 <script>
-import Product from './Product.vue';
-import AddProducts from '../AddProducts/AddProducts.vue';
+import Product from '@/components/Products/ProductsTable/Product.vue';
+import AddProducts from '@/components/Products/AddProducts/AddProducts.vue';
+import Notification from "@/components/Notification.vue";
 export default {
   data(){
     return{
@@ -31,7 +33,8 @@ export default {
   },
 components: {
     Product,
-    AddProducts
+    AddProducts,
+    Notification
 },
 computed: {
     products() {
@@ -43,11 +46,11 @@ created() {
 },
 methods: {
     addProduct() {
-    this.$router.push({ name: 'add' });
+    this.$router.push({ name: 'edit' });
     },
     openManualAddItemModal() {
       this.$root.$emit('bv::show::modal', 'manual-add-modal', '#btnShow')
-      // this.$refs.manualAddProduct.focus()
+      this.$refs.manualAddProduct.focus()
     },
     async deleteProduct(product) {
     console.log('delete', product.id);

@@ -5,19 +5,25 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 import {autoUpdater} from "electron-updater";
+import * as path from "path";
+
 
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
 ])
-let win;
+let win
+
+
 async function createWindow() {
   // Create the browser window.
+  const __dirname = path.resolve()
   const win = new BrowserWindow({
     width: 800,
     height: 600,
     autoHideMenuBar: true,
+    icon: __dirname + '/public/favicon.ico',
     webPreferences: {
       
       // Use pluginOptions.nodeIntegration, leave this alone
@@ -90,26 +96,6 @@ if (isDevelopment) {
     })
   }
 }
-ipcMain.on('print_check', () => {
-  const options = {
-    silent: false,
-    margins: {
-      marginType: 'custom',
-      top: 0,
-      bottom: 0,
-      right: 0,
-      left: 0
-    },
-    scaleFactor: 100,
-  }
-  win.webContents.print(options, (success, failureReason) => {
-    if (!success) {
-      console.log(failureReason);
-    } else {
-      console.log('Print Initiated');
-    }
-  })
-})
 autoUpdater.on('update-available', () => {
   win.webContents.send('update_available');
 });
