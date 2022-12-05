@@ -30,7 +30,7 @@
 </template>
 
 <script>
-
+/* eslint-disable */
 export default {
   data() {
     return {
@@ -50,6 +50,6 @@ export default {
       console.log('back');
       this.$router.push('/');
     }
-  }
+  },
 };
 </script>

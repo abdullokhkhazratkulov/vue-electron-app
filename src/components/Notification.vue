@@ -9,10 +9,10 @@
   </div>
  </b-card>
 </template>
-
+  
 <script>
-
-const {ipcRenderer} = require('electron')
+/* eslint-disable */
+const {ipcRenderer} = window.require('electron')
 
 export default {
   name: "Notification",

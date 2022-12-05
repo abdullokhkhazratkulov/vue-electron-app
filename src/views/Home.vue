@@ -1,14 +1,19 @@
 <template>
-  <ProductsTable />
+  <div>
+    <ProductsTable />
+    <Notification />
+  </div>
 </template>
 
 <script>
-import ProductsTable from '@/components/Products/ProductsTable/ProductsTable.vue';
 
+import ProductsTable from '@/components/Products/ProductsTable/ProductsTable.vue';
+import Notification from '../components/Notification.vue';
 
 export default {
   components: {
-    ProductsTable
+    ProductsTable,
+    Notification
 },
   computed: {
   },
